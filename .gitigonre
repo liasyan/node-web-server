@@ -1,5 +1,3 @@
 node_modules/
 server.log
-node
-node.pub
 package-lock.json
