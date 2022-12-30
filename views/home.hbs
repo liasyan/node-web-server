@@ -7,11 +7,10 @@
     <body>
         <header>
             <h1>{{ screamIt pageTitle}}</h1>
+            {{> header }}
             <p>{{ welcomePage }}</p>
         </header>
 
-        <footer>
-            <p>Copyright {{getCurrentYear}}</p>
-        </footer>
+        {{> footer }}
     </body>
 </html>

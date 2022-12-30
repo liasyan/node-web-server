@@ -4,15 +4,15 @@ const path = require("path");
 const hbs = require('hbs');
 const port = process.env.PORT || 3000;
 const fs = require('fs');
+const handlebars = require('express-handlebars');
 
-hbs.registerPartials('/views/partials')
+hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
-// app.set("views", path.join("/public"));
+app.use(express.static(__dirname + '/public'));
 
 app.use((req, res, next) => {
     let now = new Date().toString();
     let log = `${now}: \nmethod ${req.method} \nurl: ${req.url}`;
-    // console.log(log);
     fs.appendFile('server.log', log + '\n', (err) => {
         if(err){
             console.log('Unable to append server.log')
@@ -65,6 +65,11 @@ app.get('/bad', (req, res) => {
    })
 })
 
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects'
+    })
+})
 
 app.listen(port, () => {
     console.log(`server is running in ${port}`)
